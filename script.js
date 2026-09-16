@@ -34,12 +34,47 @@ if (menuToggle && navbar) {
   CLOSE MENU WHEN CLICKING LINKS
 =========================================*/
 
+// const navLinks = document.querySelectorAll(".nav-links a");
+
+// navLinks.forEach(link => {
+
+//     link.addEventListener("click", () => {
+
+//         if (navbar) {
+//             navbar.classList.remove("active");
+//         }
+
+//         if (menuToggle) {
+//             menuToggle.classList.remove("active");
+//         }
+
+//     });
+
+// });
+
+/*=========================================
+  MOBILE MENU + DROPDOWN
+=========================================*/
+
 const navLinks = document.querySelectorAll(".nav-links a");
 
 navLinks.forEach(link => {
 
-    link.addEventListener("click", () => {
+    link.addEventListener("click", function(e) {
 
+        const dropdown = this.parentElement;
+
+        /* Services dropdown */
+        if (dropdown.classList.contains("dropdown")) {
+
+            e.preventDefault();
+
+            dropdown.classList.toggle("active");
+
+            return;
+        }
+
+        /* Normal links */
         if (navbar) {
             navbar.classList.remove("active");
         }
