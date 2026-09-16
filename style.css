@@ -8135,3 +8135,269 @@ p {
     }
 
 }
+
+
+
+/* =========================================================
+   MOBILE MENU + DROPDOWN FIX
+   Paste this at the VERY END of style.css
+   ========================================================= */
+
+@media (max-width: 992px) {
+
+    /* Mobile navigation panel */
+    .navbar {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        left: auto;
+
+        width: 85%;
+        max-width: 360px;
+        height: 100vh;
+
+        background: #ffffff;
+
+        padding: 100px 35px 40px;
+
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        z-index: 1001;
+
+        transition: right .35s ease;
+
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Open mobile menu */
+    .navbar.active {
+        right: 0;
+        left: auto;
+    }
+
+
+    /* Navigation list */
+    .nav-links {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 8px;
+
+        margin: 0;
+        padding: 0;
+    }
+
+
+    /* Each main menu item */
+    .nav-links > li {
+        width: 100%;
+        position: relative;
+    }
+
+
+    /* Main menu links */
+    .nav-links > li > a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        width: 100%;
+
+        padding: 15px 0;
+
+        color: #040404;
+
+        font-size: 18px;
+        font-weight: 500;
+
+        text-decoration: none;
+
+        border-bottom: 1px solid rgba(0,0,0,.08);
+
+        cursor: pointer;
+    }
+
+
+    /* =====================================================
+       MOBILE DROPDOWN
+       ===================================================== */
+
+    .dropdown-menu {
+        position: static !important;
+
+        width: 100% !important;
+
+        margin: 4px 0 8px !important;
+        padding: 4px 0 !important;
+
+        background: #1d1d1d !important;
+
+        border: none !important;
+        border-radius: 8px !important;
+
+        box-shadow: none !important;
+
+        display: none !important;
+
+        opacity: 1 !important;
+        visibility: visible !important;
+
+        transform: none !important;
+
+        max-height: 50vh;
+
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        -webkit-overflow-scrolling: touch;
+    }
+
+
+    /* IMPORTANT:
+       Do NOT open dropdown using hover on mobile */
+    .dropdown:hover .dropdown-menu {
+        display: none !important;
+    }
+
+
+    /* Open only when JS adds .active */
+    .dropdown.active .dropdown-menu {
+        display: block !important;
+    }
+
+
+    /* Dropdown list items */
+    .dropdown-menu li {
+        width: 100% !important;
+
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+
+    /* Dropdown links */
+    .dropdown-menu li a {
+        display: block !important;
+
+        width: 100% !important;
+
+        padding: 12px 18px !important;
+
+        background: #1d1d1d !important;
+
+        color: #dddddd !important;
+
+        font-size: 15px !important;
+        font-weight: 500 !important;
+
+        line-height: 1.3 !important;
+
+        border: none !important;
+
+        text-decoration: none;
+
+        transition:
+            background .2s ease,
+            color .2s ease !important;
+    }
+
+
+    /* Dropdown link tap/hover */
+    .dropdown-menu li a:hover,
+    .dropdown-menu li a:focus {
+        background: #79bba4 !important;
+        color: #111111 !important;
+
+        padding-left: 22px !important;
+    }
+
+
+    /* Remove desktop hover effects */
+    .dropdown-menu li a:hover {
+        transform: none !important;
+    }
+
+
+    /* =====================================================
+       DROPDOWN ARROW
+       ===================================================== */
+
+    .dropdown > a i {
+        margin-left: 8px;
+
+        font-size: 16px;
+
+        transition: transform .25s ease;
+    }
+
+
+    /* Rotate arrow when dropdown is open */
+    .dropdown.active > a i {
+        transform: rotate(180deg);
+    }
+
+
+    /* =====================================================
+       MOBILE MENU BUTTON
+       ===================================================== */
+
+    .menu-toggle {
+        display: flex !important;
+
+        position: relative;
+
+        z-index: 1002;
+
+        cursor: pointer;
+
+        touch-action: manipulation;
+    }
+
+
+    .menu-toggle span {
+        transition:
+            transform .25s ease,
+            opacity .2s ease;
+    }
+
+
+    /* =====================================================
+       PREVENT BACKDROP BLUR ON MOBILE
+       ===================================================== */
+
+    .dropdown-menu,
+    .navbar {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .navbar {
+        width: 88%;
+        max-width: 340px;
+
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .nav-links > li > a {
+        font-size: 17px;
+        padding: 14px 0;
+    }
+
+    .dropdown-menu li a {
+        font-size: 14px !important;
+        padding: 11px 16px !important;
+    }
+}
