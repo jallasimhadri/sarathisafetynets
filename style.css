@@ -7015,14 +7015,14 @@ p {
         height: 90vh;
     }
 
-    .hero .overlay {
+    /* .hero .overlay {
         background:
             linear-gradient(
                 90deg,
                 rgba(7, 13, 13, .92),
                 rgba(7, 13, 13, .55)
             );
-    }
+    } */
 
     .hero-content {
         width: 88%;
@@ -7063,7 +7063,7 @@ p {
         object-position: 62% center;
     }
 
-    .hero .overlay {
+    /* .hero .overlay {
         background:
             linear-gradient(
                 90deg,
@@ -7071,7 +7071,7 @@ p {
                 rgba(5, 10, 10, .78) 55%,
                 rgba(5, 10, 10, .45) 100%
             );
-    }
+    } */
 
     .hero-content {
         width: 88%;
@@ -7264,14 +7264,14 @@ p {
 
         z-index: 1;
 
-        background:
+        /* background:
             linear-gradient(
                 180deg,
                 rgba(4, 10, 10, .62) 0%,
                 rgba(4, 10, 10, .48) 32%,
                 rgba(4, 10, 10, .67) 65%,
                 rgba(4, 10, 10, .88) 100%
-            );
+            ); */
     }
 
 
