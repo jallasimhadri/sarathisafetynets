@@ -2865,7 +2865,7 @@ text-align:center;
         FLOAT ANIMATION
 =========================================*/
 
-.service-card{
+/* .service-card{
 
     animation:cardFloat 6s ease-in-out infinite;
 
@@ -2903,7 +2903,7 @@ text-align:center;
 
     }
 
-}
+} */
 
 
 /*=========================================
@@ -7951,4 +7951,187 @@ p {
 .dropdown-menu {
     scrollbar-width: thin !important;
     scrollbar-color: #777 #111 !important;
+}
+
+
+
+
+
+/* =========================================================
+   MOBILE PERFORMANCE FIX
+   SERVICES SECTION
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    /* -----------------------------------------
+       SERVICE CARDS
+       ----------------------------------------- */
+
+    .service-card {
+        /* Remove expensive GPU/compositing effects */
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+
+        transform-style: flat !important;
+        perspective: none !important;
+
+        will-change: auto !important;
+
+        /* Keep normal card appearance */
+        transform: none !important;
+
+        transition:
+            box-shadow .25s ease,
+            border-color .25s ease !important;
+
+        animation: none !important;
+
+        opacity: 1 !important;
+    }
+
+
+    /* -----------------------------------------
+       REMOVE FLOATING GLOW
+       ----------------------------------------- */
+
+    .service-card::before {
+        display: none !important;
+        filter: none !important;
+    }
+
+
+    /* -----------------------------------------
+       REMOVE ANIMATED BORDER ON TOUCH
+       ----------------------------------------- */
+
+    .service-card::after {
+        display: none !important;
+    }
+
+
+    /* -----------------------------------------
+       SERVICE IMAGE
+       ----------------------------------------- */
+
+    .service-image img {
+        transform: none !important;
+        filter: none !important;
+
+        transition: none !important;
+    }
+
+
+    /* -----------------------------------------
+       REMOVE IMAGE HOVER EFFECT
+       ----------------------------------------- */
+
+    .service-card:hover .service-image img {
+        transform: none !important;
+        filter: none !important;
+    }
+
+
+    /* -----------------------------------------
+       REMOVE 3D CARD HOVER
+       ----------------------------------------- */
+
+    .service-card:hover {
+        transform: none !important;
+
+        box-shadow:
+            0 15px 40px rgba(0,0,0,.06) !important;
+
+        border-color:
+            rgba(121,187,164,.15) !important;
+    }
+
+
+    /* -----------------------------------------
+       REMOVE ICON ROTATION
+       ----------------------------------------- */
+
+    .service-card:hover .service-list i {
+        transform: none !important;
+    }
+
+
+    /* -----------------------------------------
+       REMOVE IMAGE OVERLAY ANIMATION
+       ----------------------------------------- */
+
+    .service-image::before {
+        opacity: 0 !important;
+        transition: none !important;
+    }
+
+
+    /* -----------------------------------------
+       KEEP SERVICE SIZING
+       ----------------------------------------- */
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .service-image {
+        height: 230px;
+    }
+
+    .service-content {
+        padding: 22px;
+    }
+
+    .service-content h3 {
+        font-size: 28px;
+    }
+
+    .service-content p {
+        font-size: 15px;
+    }
+
+    .service-list li {
+        font-size: 14px;
+    }
+
+    .service-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .service-buttons a {
+        width: 100%;
+        justify-content: center;
+    }
+
+}
+
+
+/* =========================================================
+   EXTRA SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .service-image {
+        height: 210px;
+    }
+
+    .service-content {
+        padding: 18px;
+    }
+
+    .service-number {
+        width: 48px;
+        height: 48px;
+        font-size: 18px;
+        top: 15px;
+        right: 15px;
+
+        /* Remove number blur */
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
 }
