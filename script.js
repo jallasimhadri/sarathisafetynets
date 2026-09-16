@@ -1,13 +1,18 @@
 /*=========================================
   AOS INITIALIZATION
 =========================================*/
+
 console.log("JavaScript is working!");
-AOS.init({
-    duration: 1000,
-    once: true,
-    easing: "ease-in-out"
-});
-    
+
+if (typeof AOS !== "undefined") {
+    AOS.init({
+        duration: 1000,
+        once: true,
+        easing: "ease-in-out"
+    });
+}
+
+
 /*=========================================
   MOBILE MENU TOGGLE
 =========================================*/
@@ -15,10 +20,15 @@ AOS.init({
 const menuToggle = document.getElementById("menuToggle");
 const navbar = document.getElementById("navbar");
 
-menuToggle.addEventListener("click", () => {
-    navbar.classList.toggle("active");
-    menuToggle.classList.toggle("active");
-});
+if (menuToggle && navbar) {
+
+    menuToggle.addEventListener("click", () => {
+        navbar.classList.toggle("active");
+        menuToggle.classList.toggle("active");
+    });
+
+}
+
 
 /*=========================================
   CLOSE MENU WHEN CLICKING LINKS
@@ -27,36 +37,55 @@ menuToggle.addEventListener("click", () => {
 const navLinks = document.querySelectorAll(".nav-links a");
 
 navLinks.forEach(link => {
+
     link.addEventListener("click", () => {
-        navbar.classList.remove("active");
-        menuToggle.classList.remove("active");
+
+        if (navbar) {
+            navbar.classList.remove("active");
+        }
+
+        if (menuToggle) {
+            menuToggle.classList.remove("active");
+        }
+
     });
+
 });
 
+
 /*=========================================
-  STICKY HEADER
+  HEADER + ACTIVE MENU
+  OPTIMIZED SCROLL HANDLER
 =========================================*/
 
 const header = document.getElementById("header");
-
-window.addEventListener("scroll", () => {
-
-    if (window.scrollY > 80) {
-        header.classList.add("scrolled");
-    } else {
-        header.classList.remove("scrolled");
-    }
-
-});
-
-/*=========================================
-  ACTIVE MENU LINK
-=========================================*/
-
 const sections = document.querySelectorAll("section");
 const links = document.querySelectorAll(".nav-links a");
 
-window.addEventListener("scroll", () => {
+let ticking = false;
+
+function updateScroll() {
+
+    const scrollY = window.scrollY;
+
+    /*---------------------------------------
+      STICKY HEADER
+    ---------------------------------------*/
+
+    if (header) {
+
+        if (scrollY > 80) {
+            header.classList.add("scrolled");
+        } else {
+            header.classList.remove("scrolled");
+        }
+
+    }
+
+
+    /*---------------------------------------
+      ACTIVE MENU LINK
+    ---------------------------------------*/
 
     let current = "";
 
@@ -64,23 +93,45 @@ window.addEventListener("scroll", () => {
 
         const sectionTop = section.offsetTop - 120;
 
-        if (pageYOffset >= sectionTop) {
-            current = section.getAttribute("id");
+        if (scrollY >= sectionTop) {
+            current = section.id;
         }
 
     });
+
 
     links.forEach(link => {
 
-        link.classList.remove("active");
+        const href = link.getAttribute("href");
 
-        if (link.getAttribute("href") === "#" + current) {
-            link.classList.add("active");
-        }
+        link.classList.toggle(
+            "active",
+            href === "#" + current
+        );
 
     });
 
-});
+    ticking = false;
+
+}
+
+
+/*-----------------------------------------
+  REQUEST ANIMATION FRAME
+-----------------------------------------*/
+
+window.addEventListener("scroll", () => {
+
+    if (!ticking) {
+
+        window.requestAnimationFrame(updateScroll);
+
+        ticking = true;
+
+    }
+
+}, { passive: true });
+
 
 /*=========================================
   SMOOTH SCROLL
@@ -90,18 +141,26 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
     anchor.addEventListener("click", function (e) {
 
-        e.preventDefault();
+        const targetId = this.getAttribute("href");
 
-        const target = document.querySelector(this.getAttribute("href"));
+        if (!targetId || targetId === "#") {
+            return;
+        }
+
+        const target = document.querySelector(targetId);
 
         if (target) {
 
+            e.preventDefault();
+
+            const top =
+                target.getBoundingClientRect().top +
+                window.scrollY -
+                80;
+
             window.scrollTo({
-
-                top: target.offsetTop - 80,
-
+                top: top,
                 behavior: "smooth"
-
             });
 
         }
@@ -111,72 +170,115 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 
-const swiper = new Swiper(".heroSwiper", {
-    loop: true,
-    speed: 1200,
+/*=========================================
+  HERO SWIPER
+=========================================*/
 
-    autoplay: {
-        delay: 4000,
-        disableOnInteraction: false,
-    },
+if (typeof Swiper !== "undefined" &&
+    document.querySelector(".heroSwiper")) {
 
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
+    const swiper = new Swiper(".heroSwiper", {
 
-    effect: "fade",
+        loop: true,
 
-    fadeEffect: {
-        crossFade: true,
-    },
-});
+        speed: 1200,
 
+        autoplay: {
+            delay: 4000,
+            disableOnInteraction: false
+        },
 
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true
+        },
 
+        effect: "fade",
 
-
-
-const reveals = document.querySelectorAll(".reveal");
-
-window.addEventListener("scroll", reveal);
-
-function reveal(){
-
-    reveals.forEach(item=>{
-
-        const top = item.getBoundingClientRect().top;
-
-        if(top < window.innerHeight - 100){
-
-            item.classList.add("active");
-
+        fadeEffect: {
+            crossFade: true
         }
 
     });
 
 }
 
-reveal();
+
+/*=========================================
+  REVEAL ANIMATION
+  USING INTERSECTION OBSERVER
+=========================================*/
+
+const reveals = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+
+    const revealObserver = new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("active");
+
+                    /* Stop observing once revealed */
+                    revealObserver.unobserve(entry.target);
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: 0.1,
+            rootMargin: "0px 0px -80px 0px"
+        }
+
+    );
 
 
+    reveals.forEach(item => {
+
+        revealObserver.observe(item);
+
+    });
+
+} else {
+
+    /* Fallback for older browsers */
+
+    reveals.forEach(item => {
+
+        item.classList.add("active");
+
+    });
+
+}
 
 
-
-
+/*=========================================
+  FAQ ACCORDION
+=========================================*/
 
 const faqItems = document.querySelectorAll(".faq-item");
 
 faqItems.forEach(item => {
 
-    item.querySelector(".faq-question").addEventListener("click", () => {
+    const question = item.querySelector(".faq-question");
+
+    if (!question) {
+        return;
+    }
+
+    question.addEventListener("click", () => {
 
         faqItems.forEach(faq => {
 
-            if(faq !== item){
-
+            if (faq !== item) {
                 faq.classList.remove("active");
-
             }
 
         });
@@ -188,27 +290,36 @@ faqItems.forEach(item => {
 });
 
 
-
-
-
-
 /*=========================================
-        WHATSAPP QUOTE FORM
+  WHATSAPP QUOTE FORM
 =========================================*/
 
-document
-.getElementById("whatsappForm")
-.addEventListener("submit",function(e){
+const whatsappForm = document.getElementById("whatsappForm");
 
-e.preventDefault();
+if (whatsappForm) {
 
-const name=document.getElementById("name").value;
-const phone=document.getElementById("phone").value;
-const service=document.getElementById("service").value;
-const location=document.getElementById("location").value;
-const message=document.getElementById("message").value;
+    whatsappForm.addEventListener("submit", function (e) {
 
-const whatsappMessage=
+        e.preventDefault();
+
+
+        const name =
+            document.getElementById("name")?.value.trim() || "";
+
+        const phone =
+            document.getElementById("phone")?.value.trim() || "";
+
+        const service =
+            document.getElementById("service")?.value || "";
+
+        const location =
+            document.getElementById("location")?.value || "";
+
+        const message =
+            document.getElementById("message")?.value.trim() || "";
+
+
+        const whatsappMessage =
 
 `*New Quote Request*
 
@@ -225,15 +336,13 @@ ${message}
 
 Sent from Kranthi Safety Nets Website`;
 
-const url=
 
-`https://wa.me/919876543210?text=${encodeURIComponent(whatsappMessage)}`;
-
-window.open(url,"_blank");
-
-});
+        const url =
+            `https://wa.me/919876543210?text=${encodeURIComponent(whatsappMessage)}`;
 
 
+        window.open(url, "_blank");
 
+    });
 
-
+}
