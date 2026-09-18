@@ -8401,3 +8401,369 @@ p {
         padding: 11px 16px !important;
     }
 }
+
+
+
+/* ==========================================
+   ABOUT SECTION - MOBILE VIEW
+========================================== */
+
+@media (max-width: 768px) {
+
+    .about {
+        padding: 55px 18px !important;
+        overflow: hidden;
+    }
+
+    .about .container {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 35px !important;
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    /* IMAGE */
+
+    .about-image {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    .about-image .image-card {
+        width: 100% !important;
+        max-width: 420px !important;
+        margin: 0 auto !important;
+    }
+
+    .about-image img {
+        width: 100% !important;
+        height: auto !important;
+        display: block !important;
+        object-fit: cover !important;
+    }
+
+    /* EXPERIENCE BOX */
+
+    .experience-box {
+        padding: 12px 18px !important;
+    }
+
+    .experience-box h2 {
+        font-size: 30px !important;
+        margin: 0 !important;
+    }
+
+    .experience-box span {
+        font-size: 13px !important;
+    }
+
+    /* CONTENT */
+
+    .about-content {
+        width: 100% !important;
+        text-align: left !important;
+    }
+
+    .section-tag {
+        font-size: 12px !important;
+        letter-spacing: 0.8px !important;
+        display: inline-block !important;
+        margin-bottom: 10px !important;
+    }
+
+    .about-content h2 {
+        font-size: 27px !important;
+        line-height: 1.25 !important;
+        margin-bottom: 20px !important;
+    }
+
+    .about-content h2 span {
+        display: inline !important;
+    }
+
+    .about-content p {
+        font-size: 16px !important;
+        line-height: 1.75 !important;
+        margin-bottom: 18px !important;
+    }
+
+    /* FEATURES */
+
+    .about-features {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+        margin-top: 25px !important;
+    }
+
+    .feature-box {
+        width: 100% !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        padding: 12px 14px !important;
+        box-sizing: border-box !important;
+    }
+
+    .feature-box i {
+        flex-shrink: 0 !important;
+        font-size: 17px !important;
+    }
+
+    .feature-box span {
+        font-size: 14px !important;
+        line-height: 1.4 !important;
+    }
+
+    /* BUTTONS */
+
+    .about-buttons {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        margin-top: 28px !important;
+        width: 100% !important;
+    }
+
+    .about-buttons .cal-btn,
+    .about-buttons .whatsap-btn {
+        width: 100% !important;
+        height: 52px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+    }
+
+}
+
+
+/* ==========================================
+   SMALL MOBILE DEVICES
+========================================== */
+
+@media (max-width: 480px) {
+
+    .about {
+        padding: 45px 15px !important;
+    }
+
+    .about-content h2 {
+        font-size: 24px !important;
+        line-height: 1.3 !important;
+    }
+
+    .about-content p {
+        font-size: 15px !important;
+        line-height: 1.7 !important;
+    }
+
+    .section-tag {
+        font-size: 11px !important;
+    }
+
+    .feature-box {
+        padding: 11px 12px !important;
+    }
+
+    .feature-box span {
+        font-size: 13px !important;
+    }
+
+    .experience-box h2 {
+        font-size: 27px !important;
+    }
+
+    .experience-box span {
+        font-size: 12px !important;
+    }
+
+}
+
+
+
+
+
+
+/* ==========================================
+   ABOUT SARATHI - MOBILE VIEW
+========================================== */
+
+@media (max-width: 768px) {
+
+    .about-Sarathi {
+        width: 100% !important;
+        padding: 55px 18px !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+    }
+
+    .about-container {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 35px !important;
+        margin: 0 auto !important;
+    }
+
+    /* =========================
+       CONTENT
+    ========================= */
+
+    .about-content {
+        width: 100% !important;
+        text-align: left !important;
+        order: 1 !important;
+    }
+
+    .about-tag {
+        display: block !important;
+        font-size: 11px !important;
+        line-height: 1.5 !important;
+        letter-spacing: 0.5px !important;
+        margin-bottom: 12px !important;
+    }
+
+    .about-content h2 {
+        font-size: 27px !important;
+        line-height: 1.3 !important;
+        margin: 0 0 20px !important;
+    }
+
+    .about-content h2 span {
+        display: inline !important;
+    }
+
+    .about-content p {
+        font-size: 16px !important;
+        line-height: 1.75 !important;
+        margin-bottom: 18px !important;
+    }
+
+    /* =========================
+       FEATURES
+    ========================= */
+
+    .about-features {
+        width: 100% !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 11px !important;
+        margin-top: 25px !important;
+    }
+
+    .feature {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 12px 14px !important;
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+    }
+
+    /* =========================
+       BUTTONS
+    ========================= */
+
+    .hero-btns {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        margin-top: 25px !important;
+    }
+
+    .hero-btns .cal-btn,
+    .hero-btns .whatsap-btn {
+        width: 100% !important;
+        height: 52px !important;
+        min-height: 52px !important;
+        box-sizing: border-box !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    /* =========================
+       IMAGE
+    ========================= */
+
+    .about-image {
+        width: 100% !important;
+        order: 2 !important;
+        position: relative !important;
+    }
+
+    .about-image img {
+        width: 100% !important;
+        height: auto !important;
+        display: block !important;
+        object-fit: cover !important;
+    }
+
+    /* =========================
+       EXPERIENCE CARD
+    ========================= */
+
+    .experience-card {
+        padding: 12px 18px !important;
+    }
+
+    .experience-card h3 {
+        font-size: 30px !important;
+        line-height: 1.1 !important;
+        margin: 0 !important;
+    }
+
+    .experience-card p {
+        font-size: 13px !important;
+        margin: 4px 0 0 !important;
+        line-height: 1.4 !important;
+    }
+
+}
+
+
+/* ==========================================
+   SMALL MOBILE
+========================================== */
+
+@media (max-width: 480px) {
+
+    .about-Sarathi {
+        padding: 45px 15px !important;
+    }
+
+    .about-container {
+        gap: 30px !important;
+    }
+
+    .about-content h2 {
+        font-size: 24px !important;
+        line-height: 1.3 !important;
+    }
+
+    .about-content p {
+        font-size: 15px !important;
+        line-height: 1.7 !important;
+    }
+
+    .about-tag {
+        font-size: 10px !important;
+    }
+
+    .feature {
+        font-size: 13px !important;
+        padding: 11px 12px !important;
+    }
+
+    .experience-card h3 {
+        font-size: 27px !important;
+    }
+
+    .experience-card p {
+        font-size: 12px !important;
+    }
+
+}
